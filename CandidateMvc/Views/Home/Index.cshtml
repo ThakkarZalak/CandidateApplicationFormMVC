@@ -1,0 +1,469 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="30"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link href="~/Content/date.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="~/Content/select.css" rel="stylesheet" />
+    <link href="~/Content/form.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="heading">Candidate Application Form</div>
+    <!-- ========  Multi step form =============================================================================================================================================================================== -->
+    <div class="multi_step_form">
+        <form id="msform" action="Home/submited">
+            <!-- ======================= progress bar ===================================================================================================================================================================== -->
+            <ul id="progressbar">
+                <li id="state_first" class="active active_state state" onclick="liClick(0)">Basic Information</li>
+                <li id="state_second" class="state" onclick="liClick(1)">Personal Data</li>
+                <li id="state_third" class="state" onclick="liClick(2)">Additional Information</li>
+                <li id="state_forth" class="state" onclick="liClick(3)">Educational Data</li>
+                <li id="state_fifth" class="state" onclick="liClick(4)">Recent employeer</li>
+                <li id="state_sixth" class="state" onclick="liClick(5)">References</li>
+            </ul>
+            <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            <!-- ======================== slide first ======================================================================================================================================================================= -->
+            <div class="form_class">
+                <div id="first" class="slide">
+                    <div class="container">
+                        <!-- FIRST ROW OF FIRST DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="c_person" name="ContactPerson" class="text no_number" onfocusout="focus_label('c_person-label','c_person')">
+                                    <label id="c_person-label" class="text_label">Contact Person</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="inperson_interview" name="InPersonInterview" class="text no_number" onfocusout="focus_label('inperson_interview-label','inperson_interview')">
+                                    <label id="inperson_interview-label" class="text_label">In-person Interview</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SECOND ROW OF FIRST DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="posi_desired" name="PositionDesired" class="text no_number" onfocusout="focus_label('posi_desired-label','posi_desired')">
+                                    <label id="posi_desired-label" class="text_label">Position Desired</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="pref_loc" name="PreferedLocation" class="text no_number" onfocusout="focus_label('pref_loc-label','pref_loc')">
+                                    <label id="pref_loc-label" class="text_label">Prefered work Location</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- THIRD ROW OF FIRST DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="current_ctc" name="CurrentCTC" class="text" onfocusout="focus_label('current_ctc-label','current_ctc')">
+                                    <label id="current_ctc-label" class="text_label">Current CTC</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="exp_salary" name="ExpectedSalary" class="text" onfocusout="focus_label('exp_salary-label','exp_salary')">
+                                    <label id="exp_salary-label" class="text_label">Expected Salary</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FORTH ROW OF FIRST DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="availability" name="AvailabilityOnBoard" class="text no_number" onfocusout="focus_label('availability-label','availability')">
+                                    <label id="availability-label" class="text_label">Availability on Board</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="venue" name="Venue" class="text" onfocusout="focus_label('venue-label','venue')">
+                                    <label id="venue-label" class="text_label">Venue</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ------------------------SLIDE FIRST ENDS------------------------------>
+                <div id="second" class="none slide">
+                    <div class="container">
+                        <!-- FIRST ROW OF SECOND DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="firstname" name="FirstName" class="text no_number" onfocusout="focus_label('label_firstname','firstname')">
+                                    <label id="label_firstname" class="text_label">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="middelname" name="MidName" class="text no_number" onfocusout="focus_label('label_middelname','middelname')">
+                                    <label id="label_middelname" class="text_label">Middel Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="lastname" name="LastName" class="text no_number" onfocusout="focus_label('label_lastname','lastname')">
+                                    <label id="label_lastname" class="text_label">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SECOND ROW OF SECOND DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <textarea id="address" name="Address" class="text" rows="1" onfocusout="focus_label('label_address','address')"></textarea>
+                                    <label id="label_address" class="text_label">Address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- THIRD ROW OF SECOND DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="email" name="Email" class="text" onfocusout="focus_label('label_email','email')">
+                                    <label id="label_email" class="text_label">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="phone" name="Phone" class="text" onfocusout="focus_label('label_phone','phone')">
+                                    <label id="label_phone" class="text_label">Phone</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="lanline" name="LanLine" class="text" onfocusout="focus_label('label_lanline','lanline')">
+                                    <label id="label_lanline" class="text_label">Lan-Line</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FORTH ROW OF SECOND DIV -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="dates group">
+                                    <!-- <label>Choose DOB</label> -->
+                                    <input type="text" class="text" name="DateOfBirth" id="dob" autocomplete="off" onfocusout="focus_label('label_dob', 'dob')">
+                                    <label id="label_dob" class="text_label" for="usr1">Date of Birth</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="age" name="Age" class="text" onfocusout="focus_label('label_age','age')">
+                                    <label id="label_age" class="text_label">Age</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="text_label ml-3">Marital Status</label>
+                                <div class="group" id="marital_status">
+                                    <!-- <div class="maritalstatus float-left" id="marital_status"> -->
+                                    <div class="inline group_box">
+                                        <input id="single" type="radio" value="Single" class="radio" name="MaritalStatus">
+                                        <label class="radio_label" for="single">Single</label>
+                                    </div>
+                                    <div class="inline group_box">
+                                        <input id="married" type="radio" value="Married" class="radio" name="MaritalStatus">
+                                        <label class="radio_label" for="married">Married</label>
+                                    </div>
+                                    <div class="inline group_box">
+                                        <input id="divorsed" type="radio" value="Divorsed" class="radio" name="MaritalStatus">
+                                        <label class="radio_label" for="divorsed">Divorsed</label>
+                                    </div>
+                                    <div class="inline group_box">
+                                        <input id="widowed" type="radio" value="Widowed" class="radio" name="MaritalStatus">
+                                        <label class="radio_label" for="widowed">Widowed</label>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="text_label ml-3">Gender</label>
+                                <div class="group float-left">
+                                    <div class="inline group_box">
+                                        <input id="male" type="radio" value="Male" class="radio" name="Gender">
+                                        <label class="radio_label" for="male">Male</label>
+                                    </div>
+                                    <div class="inline group_box">
+                                        <input id="female" type="radio" value="Female" class="radio" name="Gender">
+                                        <label class="radio_label" for="female">Female</label>
+                                    </div>
+                                    <div class="inline group_box">
+                                        <input id="other" type="radio" value="Other" class="radio" name="Gender">
+                                        <label class="radio_label" for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- --------SLIDE SECOND ENDS------------- -->
+                <div id="third" class="none slide">
+                    <div class="container">
+                        <!-- FIRST ROW OF SECOND DIV -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="group">
+                                    <select class="js-select2" id="language" name="Lang" multiple>
+                                       
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SECOND ROW OF THIRD SLIDE -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <textarea id="about_coll" name="AboutCollabera" class="text" rows="2" onfocusout="focus_label('label_about_coll','about_coll')"></textarea>
+                                    <label id="label_about_coll" class="text_label">How did you get to know about Collabera?</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <textarea id="knowabt_coll" name="KnowAboutCollabera" class="text" rows="2" onfocusout="focus_label('label_knowabt-coll','knowabt_coll')"></textarea>
+                                    <label id="label_knowabt-coll" class="text_label">What do you know about Collabera?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- THIRD ROW OF THIRD SLIDE -->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <textarea id="career_aspiration" name="CareerAspiration" class="text" rows="2" onfocusout="focus_label('label_career_aspiration','career_aspiration')"></textarea>
+                                    <label id="label_career_aspiration" class="text_label">What are your career aspirations?</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <textarea id="suitability" name="Suitability" class="text" rows="2" onfocusout="focus_label('label_suitability','suitability')"></textarea>
+                                    <label id="label_suitability" class="text_label">Why do you think you will be suitable for this job?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FORTH ROW OF THIRD SLIDE -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3" style="margin-top: 40px">
+                                    <div class="custom-file" id="resume_input">
+                                        <input type="file" name="UploadResume" class="custom-file-input" id="resume" accept=".doc, .DOC, .docx, .DOCX, .pdf, .PDF" />
+                                        <label class="custom-file-label" for="resume"><span class="float-left">Add your Resume</span></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" id="upload_btn">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- THIRD SLIDE ENDS -->
+                <div id="forth" class="none slide">
+                    <div class="container" id="edu">
+                        <div id="edu_1" class="education">
+                            <!-- FIRST ROW OF FORTH SLIDE -->
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="group">
+                                        <input type="text" id="course" name="Course" class="text" onfocusout="focus_label('label_course','course')">
+                                        <label id="label_course" class="text_label">Course</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="group">
+                                        @*<select class="js-select2" id="year_graduat" name="year">
+
+                                        </select>*@
+                                        <input type="number" id="year_graduat" name="YearGraduate" class="text" autocomplete="off" onfocusout="focus_label('label_year_graduat','year_graduat')">
+                                        <label id="label_year_graduat" class="text_label">Year Graduate</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SECOND ROW OF FORTH SLIDE -->
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="group">
+                                        <input type="text" id="school_university" name="SchoolUniversity" class="text" onfocusout="focus_label('label_school_university','school_university')">
+                                        <label id="label_school_university" class="text_label">School & University</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="group">
+                                        <input type="text" id="trainings" name="OtherTrainings" class="text" onfocusout="focus_label('label_trainings','trainings')">
+                                        <label id="label_trainings" class="text_label">Other Trainings Attended</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-1 offset-11'>
+                                    <div class='group none'>
+                                        <a onclick=removeEmployee('emp')>
+                                            <ion-icon name='close' style='font-size: 30px;color: #c00;'></ion-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a onclick="createEduData()">
+                            <ion-icon name="add" style="font-size: 30px; color: #007bff;"></ion-icon> <p style="color: #007bff">ADD </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- SLIDE FORTH ENDS -->
+                <div id="fifth" class="none slide">
+                    <div id="emp" class="container">
+                        <div id="emp_1" class="employee">
+                            <!-- FIRST ROW OF FIFTH SLIDE -->
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="group">
+                                        <input type="text" id="position" name="Position" class="text no_number" onfocusout="focus_label('label_position','position')">
+                                        <label id="label_position" class="text_label">Position</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="group">
+                                        <input type="text" id="company" name="Company" class="text" onfocusout="focus_label('label_company','company')">
+                                        <label id="label_company" class="text_label">Company</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SECOND ROW OF FIFTH SLIDE -->
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="dates group">
+                                        <!-- <label>Choose DOB</label> -->
+                                        <input type="text" class="text" id="from_date" name="FromDate" autocomplete="off" onfocusout="focus_label('label_from_date','from_date')">
+                                        <label id="label_from_date" class="text_label">From Date</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="dates group">
+                                        <!-- <label>Choose DOB</label> -->
+                                        <input type="text" class="text" id="to_date" name="ToDate" autocomplete="off" onfocusout="focus_label('label_to_date','to_date')">
+                                        <label id="label_to_date" class="text_label">To Date</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- THIRD ROW OF FIFTH SLIDE -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <select class="js-select2 " id="skills" name="Skills" multiple="multiple">
+                                            <option value="NET">.NET</option>
+                                            <option value="JAVA">JAVA</option>
+                                            <option value="ANDROID">ANDROID</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-1 offset-5">
+                                    <div class="group none">
+                                        <a onclick="removeEmployee('emp_1')">
+                                            <ion-icon name="close" style="font-size: 30px;color: #c00;"></ion-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a onclick="createEmployee()">
+                            <ion-icon name="add" style="font-size: 30px; color: #007bff;"></ion-icon> <p style="color: #007bff">ADD </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- SLIDE FIFTH ENDS -->
+                <div id="sixth" class="none slide">
+                    <div id="ref" class="container">
+                        <!-- FIRST ROW OF SIXTH SLIDE IN WHICH ON CLICKING + ICON WE CAN ADD ANOTHER ROW AND ON CLICKING X ICON WE CAN REMOVE ONE ROE-->
+                        <div id="refrence_1" class="reference row">
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="ref_name_1" name="ReferenceName" class="text no_number" onfocusout="focus_label('label_ref_name_1','ref_name_1')">
+                                    <label id="label_ref_name_1" class="text_label">Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="text" id="relationship_1" name="ReferenceRelationship" class="text no_number" onfocusout="focus_label('label_relationship_1','relationship_1')">
+                                    <label id="label_relationship_1" class="text_label">Relationship</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="group">
+                                    <input type="number" id="ref_contact_1" name="ReferenceContactNo" class="text" onfocusout="focus_label('label_ref_contact_1','ref_contact_1')">
+                                    <label id="label_ref_contact_1" class="text_label">Contact No.</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="group none">
+                                    <a onclick="removeRefrence('row_1')">
+                                        <ion-icon name="close" style="font-size: 30px; color: #c00;"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px 50px">
+                        <a onclick="createRefrence()">
+                            <ion-icon name="add" style="font-size: 30px; color: #007bff;"></ion-icon> <p style="color: #007bff">ADD </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- SLIDE SIXTH ENDS -->
+                <!-- ROW FOR PREVIOUS , NEXT AND SUBMIT BUTTON -->
+                <div class="row">
+                    <div class="col">
+                        <button id="previous" type="button" class="btn btn-primary none" name="previous" onclick="previousSlide()">Previous</button>
+                    </div>
+                    <div class="col">
+                        <button id="next" type="button" class="btn btn-primary" data-current="1" name="next" onclick="nextSlide()">Next</button>
+                        <input id="submit" type="submit" class="btn btn-primary none" value="submit">
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!---------------- script ---------------------------------------------------------------------------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="~/Scripts/data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/form.js"></script>
+    <script src="~/Scripts/select.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="~/Scripts/date.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="select.css"> -->
+    <script src="~/Scripts/datadictionary.js"></script>
+    <script src="~/Scripts/form_validate.js"></script>
+    
+
+</body>
+</html>
