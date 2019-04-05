@@ -1,3 +1,6 @@
+// FOR SELECT2 VALIDATION
+
+var select2 = document.getElementsByClassName("select2-selection");
 
 callBack();
 

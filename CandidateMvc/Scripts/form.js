@@ -2,12 +2,11 @@
 
 var lang = languages;
 for (i in lang) {
-    $("#language").append('<option value='+ lang[i]["name"] +'>' + lang[i]["name"] +'</option>');
+    $("#language").append('<option value=' + lang[i]["name"] + '>' + lang[i]["name"] + '</option>');
 }
 
-
-var select2 = document.getElementsByClassName("select2-selection");
 // -------- JS FOR INPUT TEXT AND TEXTAREA--------------
+
 function focus_label(label_id, id) {
     var data = document.getElementById(id).value;
     // alert();
@@ -44,31 +43,7 @@ function focus_label(label_id, id) {
 
         }
     }
-    
 }
-// Calculate Age
-
-//function calcAge() {
-    
-//    var dob = document.getElementById("dob").value;
-//    if (!(dob == "") && dobValid(dob)) {
-//        date = dob.split('-');
-//        var dob_yyyy = parseInt(date[0]);
-//        var dob_mm = parseInt(date[1]);
-//        var dob_dd = parseInt(date[2]);
-//        var today = new Date();
-//        var dd = (today.getDate());
-//        var mm = (today.getMonth() + 1); //January is 0!
-//        var yyyy = today.getFullYear();
-//        var age = yyyy - dob_yyyy;
-//        if ((mm - dob_mm) < 0) {
-//            age--;
-//        }
-//        document.getElementById("age").value = age;
-//        document.getElementById("age").focus();
-//    }
-    
-//}
 
 // JS FOR NEXT SLIDE
 
@@ -76,10 +51,10 @@ var count = 0;
 var no_count = 0;
 function nextSlide() {
 
-    
+
     var next_valid = validation();
 
-    if (next_valid) {
+    if (true) {
 
         count = count + 1;
         var nex_id = document.getElementsByClassName("slide")[count].id;
@@ -118,6 +93,7 @@ function nextSlide() {
 }
 
 // JS FOR PREVIOUS SLIDE
+
 function previousSlide() {
     count = count - 1;
     firstslide = true;
@@ -157,13 +133,15 @@ function previousSlide() {
     no_count = 0;
 
 }
+
 // FOR THIRD SLIDE FILE INPUT
 
 $('.custom-file input').change(function (e) {
     $(this).next('.custom-file-label').html(e.target.files[0].name);
 });
 
-//For slide 4
+//For slide 4 ADDING AND REMOVING EDUCATION DETAILS
+
 var edu_no = 2;
 function createEduData() {
     var parent_element = document.getElementById("edu");
@@ -177,7 +155,6 @@ function createEduData() {
     var trainings = "trainings" + edu_no;
     var label_trainings = "label_trainings" + edu_no;
     var edu = "edu_" + edu_no;
-
 
     var row = "<div id='" + edu + "' class='education'>" +
         "<div class='row'>" +
@@ -230,19 +207,16 @@ function createEduData() {
 function removeEduData(id) {
     var element = document.getElementById(id);
     element.parentNode.removeChild(element);
-    // emp_no--;
 
 }
 
-// FOR SLIDE 5
+// FOR SLIDE 5 ADDING AND REMOVING EMPLOYEE
 
 var emp_no = 2;
-
 function createEmployee() {
 
     var parent_element = document.getElementById("emp");
     var para = document.createElement("div");
-
     var emp = "emp_" + emp_no;
     var position = "position_" + emp_no;
     var label_position = "label_position_" + emp_no;
@@ -252,7 +226,7 @@ function createEmployee() {
     var label_from_date = "label_from-date" + emp_no;
     var to_date = "to-date" + emp_no;
     var label_to_date = "label_to-date" + emp_no;
-    // var ref_id = "'row_" + ref_no + "'";
+
     var row = "<div id='" + emp + "' class='employee'>" +
         "<div class='row'>" +
         "<div class='col-md'>" +
@@ -308,10 +282,9 @@ function removeEmployee(id) {
 
 }
 
-// FOR SLIDE 6 ADDING AND REMOVING ROW
+// FOR SLIDE 6 ADDING AND REMOVING REFERENCES
+
 var ref_no = 2;
-
-
 function createRefrence() {
 
     var parent_element = document.getElementById("ref");
@@ -324,8 +297,6 @@ function createRefrence() {
     var ref_contact = "ref_contact" + ref_no;
     var label_ref_contact = "label_ref_contact" + ref_no;
 
-    // alert(typeof(ref))
-    // var ref_id = "'row_" + ref_no + "'";
     var row = "<div id=" + ref + " class='reference row'>" +
         "<div class='col-md'>" +
         "<div class='group'>" +
@@ -366,9 +337,6 @@ function removeRefrence(id) {
     // ref_no--;
 }
 
-
-
-
 // FOR LI CLICK 
 
 function liClick(no) {
@@ -398,16 +366,7 @@ function liClick(no) {
 
         }
 
-
     }
-
 
 }
 
-
-
-
-
-// function fun() {
-//   alert();
-// }

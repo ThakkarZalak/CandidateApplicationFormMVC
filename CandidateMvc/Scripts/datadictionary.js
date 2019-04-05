@@ -6,7 +6,9 @@ $("#msform").submit(function (e) {
 
     if (valid) {
         $(".demo").show();
+
         // FOR CANDIDATE TABLE
+
         var candidate_info = {
             ContactPerson: $("#c_person").val(),
             InPersonInterview: $("#inperson_interview").val(),
@@ -34,7 +36,8 @@ $("#msform").submit(function (e) {
         }
         data.candidate = candidate_info;
 
-        // FOR EDUDATA
+        // FOR EDUCATION TABLE
+
         var edu_array = [];
         var arr = $(".education").find('.text')
         for (var i = 0; i < arr.length; i += 4) {
@@ -63,7 +66,7 @@ $("#msform").submit(function (e) {
         }
         data.education = edu_array;
 
-        //FOR RECENTEMPLOYEER
+        //FOR RECENTEMPLOYEER TABLE
 
         var emp_array = [];
         var arr = $(".employee").find('.text')
@@ -86,15 +89,14 @@ $("#msform").submit(function (e) {
                     emp_value.ToDate = $(art[j]).val();
 
                 }
-
-
             }
             emp_array.push(emp_value)
         }
         data.employee = emp_array;
 
+        // FOR REFERENCES TABLE
+
         var ref_array = [];
-        // FOR REFERENCES
         var arr = $(".reference.row").find('.text')
         for (var i = 0; i < arr.length; i += 3) {
             var art = arr.slice(i, i + 3)
@@ -115,6 +117,8 @@ $("#msform").submit(function (e) {
             ref_array.push(ref_value)
         }
         data.references = ref_array;
+
+        // AJAX REQUEST FOR FORM SUBMIT
 
         $.ajax({
             type: "POST",
@@ -141,7 +145,7 @@ $("#msform").submit(function (e) {
                         button: "Okay",
                     });
                 }
-                
+
             },
             error: function (error) {
                 $(".demo").hide();
@@ -158,6 +162,7 @@ $("#msform").submit(function (e) {
 })
 
 // FOR RESUME FILE UPLOAD
+
 var upload_valid = false;
 $("#upload_btn").click(function () {
     var files = $("#resume").get(0).files[0];
@@ -172,18 +177,8 @@ $("#upload_btn").click(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                swal({
-                    title: "Uploaded!",
-                    text: "Your File is uploaded successfully!",
-                    icon: "success",
-                    button: "Okay",
-                });
-                document.getElementById("resume_input").classList.remove("invalid_file");
-                upload_valid = true;
-            },
-            error: function (error) {
                 var size = parseFloat($("#resume")[0].files[0].size / 1024).toFixed(2);
-                if (size >= 4000) {
+                if (size >= 4000 && response == "False") {
                     swal({
                         title: "Error!",
                         text: "Your File is too large, please upload file of maximum 4Mb!",
@@ -193,13 +188,23 @@ $("#upload_btn").click(function () {
                 }
                 else {
                     swal({
+                        title: "Uploaded!",
+                        text: "Your File is uploaded successfully!",
+                        icon: "success",
+                        button: "Okay",
+                    });
+                }
+                document.getElementById("resume_input").classList.remove("invalid_file");
+                upload_valid = true;
+            },
+            error: function (error) {
+                    swal({
                         title: "Error!",
                         text: "Your File is not uploaded, please try again!",
                         icon: "error",
                         button: "Okay",
                     });
-                }
-
+                
                 upload_valid = false;
             }
         });

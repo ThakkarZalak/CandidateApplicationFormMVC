@@ -11,6 +11,7 @@ namespace CandidateMvc.Controllers
 {
     public class HomeController : Controller
     {
+        private static HttpPostedFileBase file;
         private static string file_path;
         private CandidateDBContext CAND = new CandidateDBContext();
         private LanguageDBContext LANG = new LanguageDBContext();
@@ -31,6 +32,7 @@ namespace CandidateMvc.Controllers
         [HttpPost]
         public bool Form(Candidate c, List<string> Lang, List<Education> edu, List<Employeer> emp, List<string> Skills, List<Reference> refer)
         {
+
             try
             {
                 c.UploadResume = file_path;
@@ -72,6 +74,8 @@ namespace CandidateMvc.Controllers
                     REF.SaveChanges();
 
                 }
+                file.SaveAs(file_path);
+
                 return true;
 
             }
@@ -79,29 +83,38 @@ namespace CandidateMvc.Controllers
             {
                 return false;
             }
-            
+
         }
 
         [HttpPost]
         public bool Upload()
         {
-            Debug.WriteLine(Request.Files.Count);
+            //Debug.WriteLine(Request.Files.Count);
             try
             {
-                HttpPostedFileBase file = Request.Files[0];
-                string ext = Path.GetExtension(file.FileName);
-                string name = Path.GetFileNameWithoutExtension(file.FileName) + DateTime.Now.ToFileTime() + ext;
-                string rootPath = "~/App_Data/" + name;
-                file_path = Server.MapPath(rootPath);
-                file.SaveAs(file_path);
-                return true;
+                file = Request.Files[0];
+                //Debug.WriteLine(file);
+                if (file.ContentLength >= (4096 * 1024))
+                {
+                    //Debug.WriteLine(file.ContentLength);
+                    return false;
+
+                }
+                else
+                {
+                    string ext = Path.GetExtension(file.FileName);
+                    string name = Path.GetFileNameWithoutExtension(file.FileName) + DateTime.Now.ToFileTime() + ext;
+                    string rootPath = "~/App_Data/" + name;
+                    file_path = Server.MapPath(rootPath);
+                    return true;
+                }
 
             }
             catch (Exception e)
             {
                 Debug.WriteLine("hello error");
             }
-                return false;
+            return false;
         }
 
     }
