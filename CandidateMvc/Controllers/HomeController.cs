@@ -31,46 +31,55 @@ namespace CandidateMvc.Controllers
         [HttpPost]
         public bool Form(Candidate c, List<string> Lang, List<Education> edu, List<Employeer> emp, List<string> Skills, List<Reference> refer)
         {
-            c.UploadResume = file_path;
-            CAND.Candidates.Add(c);
-            CAND.SaveChanges();
-            var c_id = c.ID;
-            foreach (string lang in Lang)
+            try
             {
-                Language l = new Language() { CID = c_id, Lang = lang };
-                LANG.Languages.Add(l);
-                LANG.SaveChanges();
-            }
+                c.UploadResume = file_path;
+                CAND.Candidates.Add(c);
+                CAND.SaveChanges();
+                var c_id = c.ID;
+                foreach (string lang in Lang)
+                {
+                    Language l = new Language() { CID = c_id, Lang = lang };
+                    LANG.Languages.Add(l);
+                    LANG.SaveChanges();
+                }
 
-            foreach (Education ed in edu)
+                foreach (Education ed in edu)
+                {
+                    ed.CID = c_id;
+                    EDU.Educations.Add(ed);
+                    EDU.SaveChanges();
+
+                }
+
+                foreach (Employeer em in emp)
+                {
+                    em.CID = c_id;
+                    EMP.Employeers.Add(em);
+                    EMP.SaveChanges();
+
+                }
+                foreach (string s in Skills)
+                {
+                    Skill sk = new Skill() { CID = c_id, Skills = s };
+                    SKILL.Skills.Add(sk);
+                    SKILL.SaveChanges();
+                }
+                foreach (Reference r in refer)
+                {
+                    r.CID = c_id;
+                    REF.References.Add(r);
+                    REF.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception e)
             {
-                ed.CID = c_id;
-                EDU.Educations.Add(ed);
-                EDU.SaveChanges();
-
+                return false;
             }
-
-            foreach (Employeer em in emp)
-            {
-                em.CID = c_id;
-                EMP.Employeers.Add(em);
-                EMP.SaveChanges();
-
-            }
-            foreach (string s in Skills)
-            {
-                Skill sk = new Skill() { CID = c_id, Skills = s };
-                SKILL.Skills.Add(sk);
-                SKILL.SaveChanges();
-            }
-            foreach (Reference r in refer)
-            {
-                r.CID = c_id;
-                REF.References.Add(r);
-                REF.SaveChanges();
-
-            }
-            return true;
+            
         }
 
         [HttpPost]

@@ -1,5 +1,5 @@
-
 //----------- Add language -----------------
+
 var lang = languages;
 for (i in lang) {
     $("#language").append('<option value='+ lang[i]["name"] +'>' + lang[i]["name"] +'</option>');

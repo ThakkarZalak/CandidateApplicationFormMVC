@@ -1,11 +1,11 @@
-// $("body").on('click', '#submit', function (e) {
 $("#msform").submit(function (e) {
     e.preventDefault();
-    
+
     var data = {};
     var valid = validation();
 
-    if(valid){
+    if (valid) {
+        $(".demo").show();
         // FOR CANDIDATE TABLE
         var candidate_info = {
             ContactPerson: $("#c_person").val(),
@@ -33,15 +33,6 @@ $("#msform").submit(function (e) {
             Suitability: $("#suitability").val(),
         }
         data.candidate = candidate_info;
-        //var date = candidate_info.DateOfBirth.split("-");
-        //var d = new Date(date[2], date[1] - 1, date[0]);
-        //candidate_info.DateOfBirth = d;
-        //console.log(candidate_info);
-
-        //console.log(typeof (candidate_info.DateOfBirth));
-
-
-
 
         // FOR EDUDATA
         var edu_array = [];
@@ -118,33 +109,43 @@ $("#msform").submit(function (e) {
                 }
                 else {
                     ref_value.ReferenceContactNo = $(art[j]).val();
-
                 }
 
             }
             ref_array.push(ref_value)
         }
         data.references = ref_array;
-        //console.log(data)
-        //console.log(language)
+
         $.ajax({
             type: "POST",
             url: '/Home/Form',
             data: { c: candidate_info, Lang: $("#language").val(), edu: edu_array, emp: emp_array, Skills: $("#skills").val(), refer: ref_array },
             success: function (response) {
-                swal({
-                    title: "Success!",
-                    text: "Your resume is submited successfully!",
-                    icon: "success",
-                    button: "Okay",
-                }).then(() => {
-                    location.reload();
-                    document.getElementById("msform").reset();
-                });
-
+                $(".demo").hide();
+                if (response == "True") {
+                    swal({
+                        title: "Success!",
+                        text: "Your resume is submited successfully!",
+                        icon: "success",
+                        button: "Okay",
+                    }).then(() => {
+                        location.reload();
+                        document.getElementById("msform").reset();
+                    });
+                }
+                else {
+                    swal({
+                        title: "Error!",
+                        text: "Your resume can not be submited, please fill the required fields!",
+                        icon: "error",
+                        button: "Okay",
+                    });
+                }
                 
             },
             error: function (error) {
+                $(".demo").hide();
+
                 swal({
                     title: "Error!",
                     text: "Your resume is not submited, please try again!",
@@ -155,14 +156,15 @@ $("#msform").submit(function (e) {
         });
     }
 })
+
+// FOR RESUME FILE UPLOAD
 var upload_valid = false;
 $("#upload_btn").click(function () {
-    // FOR RESUME FILE UPLOAD
     var files = $("#resume").get(0).files[0];
     var formData = new FormData();
     try {
         formData.append(files.name, files);
-        
+
         $.ajax({
             type: "POST",
             url: '/Home/Upload',
@@ -197,7 +199,7 @@ $("#upload_btn").click(function () {
                         button: "Okay",
                     });
                 }
-                
+
                 upload_valid = false;
             }
         });
@@ -210,5 +212,5 @@ $("#upload_btn").click(function () {
             button: "Okay",
         });
     }
-    
+
 })
