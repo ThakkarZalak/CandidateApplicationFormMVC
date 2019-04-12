@@ -7,7 +7,12 @@ callBack();
 function callBack() {
 
     $(function () {
-
+        $('#msform ').keydown(function (e) {
+            var key = e.keyCode;
+            if (key == 13) {
+                e.preventDefault();
+            }
+        });
         $('.no_number').keydown(function (e) {
             var key = e.keyCode;
             if (key > 47 && key < 58) {
